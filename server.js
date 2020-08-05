@@ -5,7 +5,10 @@ const cors = require('cors')
 
 // require route files
 const exampleRoutes = require('./app/routes/example_routes')
+const postRoutes = require('./app/routes/post_routes')
 const userRoutes = require('./app/routes/user_routes')
+const commentRoutes = require('./app/routes/comment_routes')
+const profileimgRoutes = require('./app/routes/profileImg_routes')
 
 // require middleware
 const errorHandler = require('./lib/error_handler')
@@ -49,6 +52,7 @@ app.use(replaceToken)
 
 // register passport authentication middleware
 app.use(auth)
+// register fileupload
 
 // add `express.json` middleware which will parse JSON requests into
 // JS objects before they reach the route files.
@@ -62,7 +66,10 @@ app.use(requestLogger)
 
 // register route files
 app.use(exampleRoutes)
+app.use(postRoutes)
+app.use(commentRoutes)
 app.use(userRoutes)
+app.use(profileimgRoutes)
 
 // register error handling middleware
 // note that this comes after the route middlewares, because it needs to be
