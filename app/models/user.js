@@ -1,8 +1,6 @@
 const mongoose = require('mongoose')
-const imageSchema = require('./profileImg')
 
 const userSchema = new mongoose.Schema({
-  image: imageSchema,
   email: {
     type: String,
     required: true,
