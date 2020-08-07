@@ -27,6 +27,24 @@ const requireToken = passport.authenticate('bearer', { session: false })
 // instantiate a router (mini app that only handles routes)
 const router = express.Router()
 
+// CREATE
+// POST /posts
+router.post('/posting', requireToken, (req, res, next) => {
+  console.log('test')
+  // // set owner of new post to be current user
+  // req.body.post.owner = req.user.id
+  // console.log(req.user.id)
+  // Post.create(req.body.post)
+  //   // respond to succesful `create` with status 201 and JSON of new "example"
+  //   .then(post => {
+  //     res.status(201).json({ post: post.toObject() })
+  //   })
+  //   // if an error occurs, pass it off to our error handler
+  //   // the error handler needs the error message and the `res` object so that it
+  //   // can send an error message back to the client
+  //   .catch(next)
+})
+
 // INDEX
 // GET /posts
 router.get('/posts', requireToken, (req, res, next) => {
@@ -52,23 +70,6 @@ router.get('/posts/:id', requireToken, (req, res, next) => {
     // if `findById` is succesful, respond with 200 and "post" JSON
     .then(post => res.status(200).json({ post: post.toObject() }))
     // if an error occurs, pass it to the handler
-    .catch(next)
-})
-
-// CREATE
-// POST /posts
-router.post('/posts', requireToken, (req, res, next) => {
-  // set owner of new post to be current user
-  req.body.post.owner = req.user.id
-
-  Post.create(req.body.post)
-    // respond to succesful `create` with status 201 and JSON of new "example"
-    .then(post => {
-      res.status(201).json({ post: post.toObject() })
-    })
-    // if an error occurs, pass it off to our error handler
-    // the error handler needs the error message and the `res` object so that it
-    // can send an error message back to the client
     .catch(next)
 })
 
