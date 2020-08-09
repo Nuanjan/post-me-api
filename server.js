@@ -3,6 +3,7 @@ const express = require('express')
 const mongoose = require('mongoose')
 const cors = require('cors')
 const fileUpload = require('express-fileupload')
+const bodyParser = require('body-parser')
 
 // require route files
 const exampleRoutes = require('./app/routes/example_routes')
@@ -55,6 +56,9 @@ app.use(replaceToken)
 app.use(auth)
 // register fileupload
 app.use(fileUpload())
+app.use(express.static('public'))
+app.use(bodyParser.json())
+app.use(bodyParser.urlencoded({ extended: true }))
 // add `express.json` middleware which will parse JSON requests into
 // JS objects before they reach the route files.
 // The method `.use` sets up middleware for the Express application
