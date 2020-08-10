@@ -2,15 +2,12 @@
 const express = require('express')
 const mongoose = require('mongoose')
 const cors = require('cors')
-const fileUpload = require('express-fileupload')
-const bodyParser = require('body-parser')
 
 // require route files
 const exampleRoutes = require('./app/routes/example_routes')
 const postRoutes = require('./app/routes/post_routes')
 const userRoutes = require('./app/routes/user_routes')
 const commentRoutes = require('./app/routes/comment_routes')
-const profileImgRoutes = require('./app/routes/profileImg_routes')
 
 // require middleware
 const errorHandler = require('./lib/error_handler')
@@ -55,10 +52,6 @@ app.use(replaceToken)
 // register passport authentication middleware
 app.use(auth)
 // register fileupload
-app.use(fileUpload())
-app.use(express.static('public'))
-app.use(bodyParser.json())
-app.use(bodyParser.urlencoded({ extended: true }))
 // add `express.json` middleware which will parse JSON requests into
 // JS objects before they reach the route files.
 // The method `.use` sets up middleware for the Express application
@@ -74,7 +67,6 @@ app.use(exampleRoutes)
 app.use(postRoutes)
 app.use(commentRoutes)
 app.use(userRoutes)
-app.use(profileImgRoutes)
 // register error handling middleware
 // note that this comes after the route middlewares, because it needs to be
 // passed any error messages from them
