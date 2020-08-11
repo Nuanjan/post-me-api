@@ -2,12 +2,14 @@
 const express = require('express')
 const mongoose = require('mongoose')
 const cors = require('cors')
+const bodyParser = require('body-parser')
 
 // require route files
 const exampleRoutes = require('./app/routes/example_routes')
 const postRoutes = require('./app/routes/post_routes')
 const userRoutes = require('./app/routes/user_routes')
 const commentRoutes = require('./app/routes/comment_routes')
+const uploadRoutes = require('./app/routes/upload_routes')
 
 // require middleware
 const errorHandler = require('./lib/error_handler')
@@ -17,6 +19,20 @@ const requestLogger = require('./lib/request_logger')
 // require database configuration logic
 // `db` will be the actual Mongo URI as a string
 const db = require('./config/db')
+
+// load secret keys for signing tokens from .env
+const dotenv = require('dotenv')
+dotenv.config()
+
+// Set the key based on the current environemnt
+// Set to secret key base test if in test
+if (process.env.TESTENV) {
+  process.env.KEY = process.env.SECRET_KEY_BASE_TEST
+// Set to secret key base development if not test and no key present
+// process.env.KEY is present in production and set through heroku
+} else if (!process.env.KEY) {
+  process.env.KEY = process.env.SECRET_KEY_BASE_DEVELOPMENT
+}
 
 // require configured passport authentication middleware
 const auth = require('./lib/auth')
@@ -44,6 +60,13 @@ app.use(cors({ origin: process.env.CLIENT_ORIGIN || `http://localhost:${clientDe
 // define port for API to run on
 const port = process.env.PORT || serverDevPort
 
+// add `bodyParser` middleware which will parse JSON requests into
+// JS objects before they reach the route files.
+// The method `.use` sets up middleware for the Express application
+app.use(bodyParser.json())
+// this parses requests sent by `$.ajax`, which use a different content type
+app.use(bodyParser.urlencoded({ extended: true }))
+
 // this middleware makes it so the client can use the Rails convention
 // of `Authorization: Token token=<token>` OR the Express convention of
 // `Authorization: Bearer <token>`
@@ -67,6 +90,7 @@ app.use(exampleRoutes)
 app.use(postRoutes)
 app.use(commentRoutes)
 app.use(userRoutes)
+app.use(uploadRoutes)
 // register error handling middleware
 // note that this comes after the route middlewares, because it needs to be
 // passed any error messages from them
