@@ -137,5 +137,14 @@ router.delete('/sign-out', requireToken, (req, res, next) => {
     .then(() => res.sendStatus(204))
     .catch(next)
 })
+router.get('/users', (req, res, next) => {
+  User.find()
+    .then(users => {
+      return users.map(user => user.toObject())
+    })
+    .then(posts => res.status(200).json({ posts: posts }))
+    // if an error occurs, pass it to the handler
+    .catch(next)
+})
 
 module.exports = router
