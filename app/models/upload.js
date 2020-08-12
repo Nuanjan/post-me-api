@@ -5,7 +5,7 @@ const uploadSchema = new mongoose.Schema({
     type: String,
     required: true
   },
-  url: {
+  imageUrl: {
     type: String,
     required: true
   },
