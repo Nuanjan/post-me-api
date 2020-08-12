@@ -178,7 +178,7 @@ pickle-email-*.html
 
 # dotenv
 # TODO Comment out this rule if environment variables can be committed
-.env
+process.env
 
 ## Environment normalization:
 /.bundle

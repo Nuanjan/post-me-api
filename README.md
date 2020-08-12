@@ -7,9 +7,9 @@ Welcome to my Grocery-Helper-Api project. The purpose of this project is to crea
 
 [Post-Me-Client gitHub Repo](https://github.com/Nuanjan/grocery-helper-client)
 
-[Heroku-deployed-site](https://pure-thicket-03244.herokuapp.com)
+[Heroku-deployed-site](https://powerful-fortress-04425.herokuapp.com)
 
-[Post-Me-Client-Deployed-site](https://nuanjan.github.io/grocery-helper-client/)
+[Post-Me-Client-Deployed-site](https://nuanjan.github.io/post-me-client/#/)
 
 ## User Stories
 * As an Post-Me API...
