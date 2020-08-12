@@ -32,7 +32,6 @@ const router = express.Router()
 router.post('/posting', requireToken, (req, res, next) => {
   // set owner of new post to be current user
   req.body.post.owner = req.user.id
-  console.log(req.user.id)
   Post.create(req.body.post)
     // respond to succesful `create` with status 201 and JSON of new "example"
     .then(post => {
