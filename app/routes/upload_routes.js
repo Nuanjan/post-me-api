@@ -25,7 +25,7 @@ const requireOwnership = customErrors.requireOwnership
 // it will also set `res.user`
 const requireToken = passport.authenticate('bearer', { session: false })
 const multer = require('multer')
-const upload = multer({ dest: 'uploads/' })
+const upload = multer({ dest: 'public/' })
 const s3Upload = require('../../lib/aws-s3-upload')
 
 // instantiate a router (mini app that only handles routes)
@@ -58,17 +58,31 @@ router.get('/uploads/:id', requireToken, (req, res) => {
     // if an error occurs, pass it to the handler
     .catch(err => handle(err, res))
 })
+const randomChars = num => {
+  const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789'
+  let result = '-'
+  for (let i = 0; i < num; i++) {
+    result += chars.charAt(Math.floor(Math.random() * chars.length))
+  }
+  return result
+}
 
 // CREATE
 // POST /uploads
 router.post('/uploads', [requireToken, upload.single('image')], (req, res) => {
-  s3Upload(req.file.path, req.file.originalname, req.body.name)
+  const name = req.body.name
+  for (let i = 0; i < name; i++) {
+    if (name[i] === '.') {
+      name[i] = 'noon'
+    }
+  }
+  s3Upload(req.file.path, req.file.originalname, name + randomChars(16))
     .then((response) => {
       // set owner of new upload to be current user
       // req.body.upload.owner = req.user.id
       return Upload.create({
         name: req.body.name,
-        url: response.Location,
+        imageUrl: response.Location,
         owner: req.user.id
       })
     })
