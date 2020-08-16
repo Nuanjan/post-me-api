@@ -6,6 +6,11 @@ URL_PATH="/uploads"
 curl "${API}${URL_PATH}/${ID}" \
   --include \
   --request GET \
-  --header "Authorization: Bearer ${TOKEN}"
+  --header "Authorization: Bearer ${TOKEN}" \
+  --data '{
+    "upload": {
+      "owner": "'"${USER_ID}"'"
+    }
+  }'
 
 echo
