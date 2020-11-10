@@ -1,10 +1,8 @@
 const mongoose = require('mongoose')
 const likeSchema = new mongoose.Schema({
   like: {
-    type: Number,
-    default: 0,
-    min: 0,
-    max: 1,
+    type: Boolean,
+    default: false,
     required: true
   },
   liketer: {
