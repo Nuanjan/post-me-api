@@ -1,6 +1,6 @@
 const mongoose = require('mongoose')
 const likeSchema = new mongoose.Schema({
-  like: {
+  likeStatus: {
     type: Boolean,
     default: false,
     required: true
