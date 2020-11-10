@@ -11,7 +11,7 @@ const handle404 = customErrors.handle404
 // CREATE
 // POST /likes/
 router.post('/likes', (req, res, next) => {
-  // get the comment data from the body of the request
+  // get the like data from the body of the request
   const likeData = req.body.like
   console.log(req.body.like)
   // get the post id from the body
