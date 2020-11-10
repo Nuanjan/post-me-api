@@ -2,7 +2,7 @@ const mongoose = require('mongoose')
 const likeSchema = new mongoose.Schema({
   likeStatus: {
     type: Boolean,
-    default: false,
+    default: true,
     required: true
   },
   liketer: {
