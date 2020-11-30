@@ -67,6 +67,7 @@ router.get('/posts/:id', requireToken, (req, res, next) => {
   // req.params.id will be set based on the `:id` in the route
   Post.findById(req.params.id)
     .populate('comments.commenter')
+    .populate('likes.liketer')
     .populate('owner')
     .then(handle404)
     // if `findById` is succesful, respond with 200 and "post" JSON
