@@ -14,4 +14,4 @@ const likeSchema = new mongoose.Schema({
 }, {
   timestamps: true
 })
-module.export = likeSchema
+module.exports = likeSchema

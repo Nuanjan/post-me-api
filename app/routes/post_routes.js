@@ -48,6 +48,7 @@ router.post('/posting', requireToken, (req, res, next) => {
 router.get('/posts', requireToken, (req, res, next) => {
   Post.find()
     .populate('comments.commenter')
+    .populate('likes.liketer')
     .populate('owner')
     .then(posts => {
       // `examples` will be an array of Mongoose documents

@@ -9,6 +9,7 @@ curl "${API}${URL_PATH}" \
   --header "Content-Type: application/json" \
   --data '{
     "like": {
+      "_id": "'"${ID}"'",
       "likeStatus": "'"${LIKE}"'",
       "postId": "'"${POST_ID}"'",
       "liketer":"'"${USER_ID}"'"

@@ -21,7 +21,9 @@ router.post('/likes', (req, res, next) => {
     .then(handle404)
     .then(post => {
       // add like data when user click like to post
+      likeData.liketerCustom = req.body.like.liketer
       post.likes.push(likeData)
+      console.log(post.likes, 'this is post like Array')
       // save post
       return post.save()
     })
@@ -45,7 +47,7 @@ router.post('/likes', (req, res, next) => {
 // })
 
 // UPDATE
-// PATCH /comments/:id
+// PATCH /likes/:id
 router.patch('/likes/:id', (req, res, next) => {
   const likeId = req.params.id
   const likeData = req.body.like
