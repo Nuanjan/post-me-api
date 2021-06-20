@@ -49,7 +49,7 @@ Welcome to my Grocery-Helper-Api project. The purpose of this project is to crea
  |   GET    | /uploads/user/:id |       images#show       |
  |   PATCH  | /uploads/:id/patch|     images#update       |
  |   DELETE |	 /uploads/:id     |     images#delete       |
- |----------|-------------------|-------------------------|
+
 
    ## Unsolved Problem
    * The upload AWS S3 Routes still need to be fixed.
