@@ -23,6 +23,54 @@ Welcome to my Grocery-Helper-Api project. The purpose of this project is to crea
    * Mongoose
    * nodemon
    * multer
+   
+ ## API End Points
+ |   Verb   |    URI Pattern    |    Controller#Action    |
+ |----------|-------------------|-------------------------|
+ |   POST   |	  /sign-up	      |       users#signup      |
+ |----------|-------------------|-------------------------|
+ |   POST	  |   /sign-in	      |       users#signin      |
+ |----------|-------------------|-------------------------|
+ |   DELETE | 	/sign-out       |     	users#signout     |
+ |----------|-------------------|-------------------------|
+ |   PATCH  | /change-password	|     users#changepw      |
+ |----------|-------------------|-------------------------|
+ |   GET    |     /users	      |     users#index         |
+ |----------|-------------------|-------------------------|
+ |   GET    |     /posts	      |     posts#index         |
+ |----------|-------------------|-------------------------|
+ |   POST   |   	/posting      |	      post#create       |
+ |----------|-------------------|-------------------------|
+ |    GET   |   	/posts/:id	  |        posts#show       |
+ |----------|-------------------|-------------------------|
+ |   PATCH  |    /posts/:id	    |       posts#update      |
+ |----------|-------------------|-------------------------|
+ |   DELETE |	   /posts/:id     |       posts#delete      |
+ |----------|-------------------|-------------------------|
+ |   POST   |  	/comments       |	   comments#create      |
+ |----------|-------------------|-------------------------|
+ |   DELETE |	 /comments/:id    |    comments#delete      |
+ |----------|-------------------|-------------------------|
+ |   PATCH  |  /comments/:id   	|   comments#update       |
+ |----------|-------------------|-------------------------|
+ |   POST   |  	   /likes       |	      likes#create      |
+ |----------|-------------------|-------------------------|
+ |   PATCH  |    /likes/:id   	|      likes#update       |
+ |----------|-------------------|-------------------------|
+ |   POST   |	    /uploads      |	    images#create       |
+ |----------|-------------------|-------------------------|
+ |   GET    |    /uploads       |     images#index        |
+ |----------|-------------------|-------------------------|
+ |   GET    |  /uploads/recent  |       images#show       |
+ |----------|-------------------|-------------------------|
+ |   GET    |   /uploads/:id    |       images#show       |
+ |----------|-------------------|-------------------------|
+ |   GET    | /uploads/user/:id |       images#show       |
+ |----------|-------------------|-------------------------|
+ |   PATCH  | /uploads/:id/patch|     images#update       |
+ |----------|-------------------|-------------------------|
+ |   DELETE |	 /uploads/:id     |     images#delete       |
+ |----------|-------------------|-------------------------|
 
    ## Unsolved Problem
    * The upload AWS S3 Routes still need to be fixed.
